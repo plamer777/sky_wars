@@ -1,0 +1,34 @@
+[
+  {
+    "armor": 1.2,
+    "attack": 0.8,
+    "max_health": 60.0,
+    "max_stamina": 30.0,
+    "name": "Воин",
+    "stamina": 0.9
+  },
+  {
+    "armor": 1.0,
+    "attack": 1.5,
+    "max_health": 50.0,
+    "max_stamina": 25.0,
+    "name": "Вор",
+    "stamina": 1.2
+  },
+  {
+    "armor": 0.5,
+    "attack": 1.8,
+    "max_health": 45.0,
+    "max_stamina": 20.0,
+    "name": "Наемник",
+    "stamina": 1.4
+  },
+  {
+    "armor": 1.2,
+    "attack": 0.8,
+    "max_health": 70.0,
+    "max_stamina": 45.0,
+    "name": "Орк",
+    "stamina": 0.9
+  }
+]

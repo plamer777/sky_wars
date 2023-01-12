@@ -20,8 +20,29 @@
   "max_damage": 1,
   "min_damage": 0.5,
   "stamina_per_hit": 1
+  },
+    {
+  "id": 4,
+  "name": "меч кладенец",
+  "max_damage": 3.0,
+  "min_damage": 2.0,
+  "stamina_per_hit": 2.0
+  },
+    {
+  "id": 5,
+  "name": "дубина из черепов",
+  "max_damage": 2.7,
+  "min_damage": 1.5,
+  "stamina_per_hit": 1.6
+  },
+    {
+  "id": 6,
+  "name": "кастет",
+  "max_damage": 2.0,
+  "min_damage": 1.0,
+  "stamina_per_hit": 1.2
   }
-],
+  ],
   "armors": [
   {
     "id": 1,
@@ -40,6 +61,24 @@
     "name": "панцирь",
     "defence": 2.0,
     "stamina_per_turn": 1.6
+    },
+    {
+    "id": 4,
+    "name": "костяная броня",
+    "defence": 1.8,
+    "stamina_per_turn": 1.4
+    },
+    {
+    "id": 5,
+    "name": "бабушкин свитер",
+    "defence": 0.6,
+    "stamina_per_turn": 0.5
+    },
+    {
+    "id": 6,
+    "name": "скафандр",
+    "defence": 2.5,
+    "stamina_per_turn": 2.0
     }
   ]
 }

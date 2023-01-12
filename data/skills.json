@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Свирепый пинок",
+    "damage": 12.0,
+    "stamina_required": 6.0
+  },
+  {
+    "name": "Мощный укол",
+    "damage": 15.0,
+    "stamina_required": 5.0
+  },
+  {
+    "name": "Удар по шарам",
+    "damage": 20.0,
+    "stamina_required": 8.0
+  },
+  {
+    "name": "Отвесить 'Леща'",
+    "damage": 10.0,
+    "stamina_required": 4.0
+  },
+  {
+    "name": "Прописать 'Фофан'",
+    "damage": 9.0,
+    "stamina_required": 3.8
+  },
+  {
+    "name": "Пьяный удар с 'вертухи'",
+    "damage": 15.0,
+    "stamina_required": 7.0
+  }
+]
