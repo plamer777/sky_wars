@@ -1,15 +1,24 @@
 """This unit contains classes describing units using in the game"""
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from random import randint
+from random import randint, choice
 from typing import Any
 from classes.equipment import Armor, Weapon
 from classes.hero_classes import UnitClass
 # -------------------------------------------------------------------------
 
 
+@dataclass
 class Unit(ABC):
     """This is an abstractive class to be inherited by another classes"""
+    name: str
+    unit_class: UnitClass
+    health: float
+    stamina: float
+    armor: Armor
+    weapon: Weapon
+    skill_used = False
+
     @abstractmethod
     def _calc_hit_damage(self) -> float:
         pass
@@ -50,10 +59,11 @@ class BaseUnit(Unit):
         :param stamina: a stamina value to add
         """
         self.stamina += stamina
+        self._round_values()
         if self.stamina > self.unit_class.max_stamina:
             self.stamina = self.unit_class.max_stamina
 
-    def get_total_damage(self, attacker: Any, damage: float) -> str:
+    def get_total_damage(self, attacker: Unit, damage: float) -> str:
         """This method serves to decrease a health amount calculating received
         damage considering defence level
 
@@ -65,6 +75,7 @@ class BaseUnit(Unit):
         """
         if self.stamina >= self.armor.stamina_per_turn:
             self.stamina -= self.armor.stamina_per_turn
+            self._round_values()
             total_defence = self.armor.defence * self.unit_class.armor
 
         else:
@@ -73,15 +84,17 @@ class BaseUnit(Unit):
         if damage > total_defence:
             total_damage = damage - total_defence
             self.health -= total_damage
+            self._round_values()
 
-            return f"{attacker.name}, используя {attacker.weapon.name}, " \
-                   f"пробивает {self.armor.name} соперника и наносит " \
-                   f"{total_damage:.2f} урона!"
+            return choice(attacker.unit_class.positive_logs).format(
+                attacker.name, attacker.weapon.log_name, self.name,
+                self.armor.name, total_damage)
 
         else:
 
-            return f"{attacker.name}, использует {attacker.weapon.name}," \
-                   f" но {self.armor.name} соперника стойко выдерживает удар!"
+            return choice(attacker.unit_class.negative_logs).format(
+                attacker.name, self.name, attacker.weapon.log_name,
+                self.armor.name)
 
     def use_skill(self, target: Unit) -> str:
         """This method allows unit to use his skill but just once for a game
@@ -105,12 +118,17 @@ class BaseUnit(Unit):
         """
         if self.stamina >= self.weapon.stamina_per_hit:
             self.stamina -= self.weapon.stamina_per_hit
+            self._round_values()
             damage = self._calc_hit_damage()
 
             return target.get_total_damage(self, damage)
 
         return f"{self.name} попытался использовать {self.weapon.name}, " \
                f"но у него не хватило выносливости:("
+
+    def _round_values(self):
+        self.stamina = round(self.stamina, 2)
+        self.health = round(self.health, 2)
 # -------------------------------------------------------------------------
 
 

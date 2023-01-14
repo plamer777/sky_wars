@@ -10,6 +10,7 @@ from marshmallow import EXCLUDE
 @dataclass
 class Weapon:
     name: str
+    log_name: str
     min_damage: float
     max_damage: float
     stamina_per_hit: float

@@ -4,7 +4,7 @@ import json
 # --------------------------------------------------------------------------
 
 
-def load_from_json(filename: str) -> List[dict]:
+def load_from_json(filename: str) -> list | dict:
     """This function loads data from a json file
 
     :param filename: relative path to json file including filename

@@ -6,7 +6,8 @@ from marshmallow_dataclass import class_schema
 from marshmallow import ValidationError
 from classes.hero_classes import UnitClass
 from utils import load_from_json
-from constants import CLASSES_FILE, SKILLS_FILE
+from constants import CLASSES_FILE, SKILLS_FILE, LOGS_FILE, DEFAULT_NEGATIVE, \
+    DEFAULT_POSITIVE
 # ------------------------------------------------------------------------
 
 
@@ -28,10 +29,16 @@ class UnitClassFactory:
         UnitClassSchema = class_schema(UnitClass)
         heroes = load_from_json(CLASSES_FILE)
         skills = load_from_json(SKILLS_FILE)
+        phrases = load_from_json(LOGS_FILE)
         shuffle(skills)
         try:
             for hero in heroes:
                 hero['skill'] = skills.pop()
+                hero['positive_logs'] = phrases.get('positive_logs',
+                                                    DEFAULT_POSITIVE)
+                hero['negative_logs'] = phrases.get('negative_logs',
+                                                    DEFAULT_NEGATIVE)
+
             result = UnitClassSchema().load(heroes, many=True)
             return result
 
@@ -47,10 +54,11 @@ class UnitClassFactory:
         :return: UnitClass instance or None if there wasn't available
         class"""
         if self.classes:
-            found_class = filter(lambda x: x.name.lower() ==
-                                 class_name.lower(), self.classes)
+            found_class = list(filter(lambda x: x.name.lower() ==
+                               class_name.lower(), self.classes))
 
-            return next(found_class)
+            return found_class[0] if found_class else self.classes[0]
+
         return None
 
     def get_class_names(self) -> Optional[List[str]]:

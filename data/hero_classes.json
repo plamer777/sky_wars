@@ -5,7 +5,8 @@
     "max_health": 60.0,
     "max_stamina": 30.0,
     "name": "Воин",
-    "stamina": 0.9
+    "stamina": 0.9,
+    "avatar": "warrior.png"
   },
   {
     "armor": 1.0,
@@ -13,7 +14,8 @@
     "max_health": 50.0,
     "max_stamina": 25.0,
     "name": "Вор",
-    "stamina": 1.2
+    "stamina": 1.2,
+    "avatar": "thief.png"
   },
   {
     "armor": 0.5,
@@ -21,7 +23,8 @@
     "max_health": 45.0,
     "max_stamina": 20.0,
     "name": "Наемник",
-    "stamina": 1.4
+    "stamina": 1.4,
+    "avatar": "mercenary.jpg"
   },
   {
     "armor": 1.2,
@@ -29,6 +32,34 @@
     "max_health": 70.0,
     "max_stamina": 45.0,
     "name": "Орк",
-    "stamina": 0.8
+    "stamina": 0.8,
+    "avatar": "orc.png"
+  },
+  {
+    "armor": 0.2,
+    "attack": 0.8,
+    "max_health": 40.0,
+    "max_stamina": 35.0,
+    "name": "Диванный боец",
+    "stamina": 1.8,
+    "avatar": "sofa_warrior.jpg"
+  },
+  {
+    "armor": 0.4,
+    "attack": 2.0,
+    "max_health": 60.0,
+    "max_stamina": 25.0,
+    "name": "Потрошитель",
+    "stamina": 0.9,
+    "avatar": "ripper.png"
+  },
+  {
+    "armor": 1.6,
+    "attack": 0.8,
+    "max_health": 50.0,
+    "max_stamina": 45.0,
+    "name": "Программист",
+    "stamina": 1.3,
+    "avatar": "programmer.jpg"
   }
 ]

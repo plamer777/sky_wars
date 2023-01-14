@@ -28,5 +28,20 @@
     "name": "Пьяный удар с 'вертухи'",
     "damage": 15.0,
     "stamina_required": 7.0
+  },
+  {
+    "name": "'Бросок сушеного питона'",
+    "damage": 14.0,
+    "stamina_required": 7.0
+  },
+  {
+    "name": "Удар глазом в кулак в прыжке",
+    "damage": 8.0,
+    "stamina_required": 3.0
+  },
+  {
+    "name": "Дыхнуть перегаром",
+    "damage": 18.0,
+    "stamina_required": 7.5
   }
 ]
