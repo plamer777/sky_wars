@@ -28,6 +28,7 @@ class Weapon:
 
 @dataclass
 class Armor:
+    """This class describes an armor for game purposes"""
     name: str
     defence: float
     stamina_per_turn: float
@@ -38,6 +39,7 @@ class Armor:
 
 @dataclass
 class EquipmentData:
+    """This class includes all available weapon and armor"""
     weapons: List[Weapon]
     armors: List[Armor]
 

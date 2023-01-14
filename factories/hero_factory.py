@@ -1,6 +1,6 @@
 from typing import Type, Union, Optional
-from equipment_factory import EquipmentFactory
-from unitclass_factory import UnitClassFactory
+from factories.equipment_factory import EquipmentFactory
+from factories.unitclass_factory import UnitClassFactory
 from classes.unit import EnemyUnit, UserUnit
 from classes.user_requests import UserRequest
 # -------------------------------------------------------------------------

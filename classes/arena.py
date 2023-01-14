@@ -1,9 +1,11 @@
-from typing import Optional
-from unit import UserUnit, EnemyUnit
+"""This unit contains classes describing a game arena"""
+from typing import Optional, Dict
+from classes.unit import UserUnit, EnemyUnit
 # --------------------------------------------------------------------------
 
 
 class BaseArena:
+    """The base class representing a singleton pattern"""
     _instance = None
 
     def __new__(cls, *args, **kwargs):
@@ -13,63 +15,114 @@ class BaseArena:
 
 
 class Arena(BaseArena):
-
+    """This class represents an arena for players with necessary logic"""
     def __init__(self):
+        """Initialization of the Arena class
+        """
+        self._recovery: int = 1
+        self._player: Optional[UserUnit] = None
+        self._enemy: Optional[EnemyUnit] = None
+        self._game_started: bool = False
+        self._battle_result: str = ''
 
-        self.recovery = 2
-        self.player: Optional[UserUnit] = None
-        self.enemy: Optional[EnemyUnit] = None
-        self.game_started = False
+    def start_game(self, player: UserUnit, enemy: EnemyUnit) -> None:
+        """This method prepares the arena for the given players
 
-    def start_game(self, player: UserUnit, enemy: EnemyUnit):
+        :param player: an instance of a UserUnit
+        :param enemy: an instance of a EnemyUnit
+        """
+        self._player = player
+        self._enemy = enemy
+        self._game_started = True
 
-        self.player = player
-        self.enemy = enemy
-        self.game_started = True
+    def next_step(self) -> Dict[str, str]:
+        """This method serves to skip a turn and to process a computer's
+        player actions
 
-    def next_step(self):
+        :return: a dictionary with game logs
+        """
+        if not self._game_started:
+            return {'result': '', 'battle_result': 'Игра завершена'}
+
+        result = self._enemy.hit(self._player)
 
         if self.check_health():
             self.recover_stamina()
 
         else:
-            self.finish_game()
+            self._battle_result = self.finish_game()
 
-    def recover_stamina(self):
-        self.player.add_stamina(self.player.unit_class.stamina * self.recovery)
-        self.enemy.add_stamina(self.enemy.unit_class.stamina * self.recovery)
+        return {'result': result, 'battle_result': self._battle_result}
+
+    def recover_stamina(self) -> None:
+        """This method serves to recover stamina after the actions of both
+        players"""
+        self._player.add_stamina(self._player.unit_class.stamina *
+                                 self._recovery)
+        self._enemy.add_stamina(self._enemy.unit_class.stamina *
+                                self._recovery)
 
     def check_health(self):
+        """This method serves to check health of both players
 
-        if self.player.health <= 0 or self.enemy.health <= 0:
+        :return: a boolean indicating if health is above zero
+        """
+        if self._player.health < 0 or self._enemy.health < 0:
             return False
 
         return True
 
-    def hit_rival(self):
+    def hit_rival(self) -> Dict[str, str]:
+        """This method allows user's player to hit an opponent
 
-        result = self.player.hit(self.enemy)
-        self.next_step()
+        :return: a dictionary containing game logs
+        """
+        if not self._game_started:
+            return {'result': '', 'battle_result': 'Игра завершена'}
 
-        return result
+        result = self._player.hit(self._enemy)
+        full_result = self.next_step()
+        full_result['result'] = result + ' ' + full_result['result']
 
-    def use_skill(self):
+        return full_result
 
-        result = self.player.use_skill(self.enemy)
-        self.next_step()
+    def use_skill(self) -> Dict[str, str]:
+        """This method allows user's player to use a special skill
 
-        return result
+        :return: a dictionary containing game logs
+        """
+        if not self._game_started:
+            return {'result': '', 'battle_result': 'Игра завершена'}
+
+        result = self._player.use_skill(self._enemy)
+        full_result = self.next_step()
+        full_result['result'] = result + ' ' + full_result['result']
+
+        return full_result
 
     def finish_game(self):
+        """This method used to finish the game and return the final result
+        of the battle
+
+        :return: a string containing the final result of the game
+        """
+        self._game_started = False
 
         result = "{0} наносит сокрушительный удар по {1} одерживая победу"
 
-        if self.player.health > 0:
-            return result.format(self.player.name, self.enemy.name)
+        if self._player.health > self._enemy.health:
+            return result.format(self._player.name, self._enemy.name)
 
-        elif self.enemy.health > 0:
-            return result.format(self.enemy.name, self.player.name)
+        elif self._enemy.health > self._player.health:
+            return result.format(self._enemy.name, self._player.name)
 
         else:
-            return f"{self.player.name} и {self.enemy.name} держались " \
+            return f"{self._player.name} и {self._enemy.name} держались " \
                    f"одинаково хорошо, бой закончился в ничью"
+
+    def clean(self) -> None:
+        """This method is required to clean the arena for the next game"""
+        self._player = None
+        self._enemy = None
+        self._battle_result = ''
+        self._game_started = False
