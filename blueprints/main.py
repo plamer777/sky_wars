@@ -19,7 +19,7 @@ def main_page() -> str:
 
 
 @main_blueprint.route('/fight/<act_request>')
-def fight_page(act_request) -> str:
+def fight_page(act_request: str) -> str:
     """This function represents a view to show an arena
 
     :param act_request: the string representing user's action

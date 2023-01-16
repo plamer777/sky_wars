@@ -1,3 +1,5 @@
+"""This file contains instances and dictionaries required for the game
+process"""
 from factories.hero_factory import HeroFactory
 from classes.arena import Arena
 # ------------------------------------------------------------------------

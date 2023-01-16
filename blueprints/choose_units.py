@@ -33,7 +33,7 @@ def get_requested_unit(unit_request: Dict[str, str],
         else:
             raise ValidationError('Unknown hero type')
 
-        return prepared_unit
+        return prepared_unit  # type: ignore
 
     except ValidationError as e:
         abort(400, f'Invalid request, there is an error {e}')
@@ -62,13 +62,13 @@ def hero_chosen_page() -> str:
     :return: a string containing html content
     """
     hero_request = request.form
-    heroes['player'] = get_requested_unit(hero_request, 'hero')
+    heroes['player'] = get_requested_unit(hero_request, 'hero')  # type: ignore
 
     options['header'] = 'Противника'
     options['route'] = '/choose-enemy/'
-    options['classes'].remove(hero_request.get('unit_class'))
-    options['weapons'].remove(hero_request.get('weapon'))
-    options['armors'].remove(hero_request.get('armor'))
+    options['classes'].remove(hero_request.get('unit_class'))  # type: ignore
+    options['weapons'].remove(hero_request.get('weapon'))  # type: ignore
+    options['armors'].remove(hero_request.get('armor'))  # type: ignore
 
     return render_template('hero_choosing.html', result=options)
 
@@ -82,6 +82,11 @@ def enemy_chosen_page() -> Response:
     """
     enemy_request = request.form
     heroes['enemy'] = get_requested_unit(enemy_request, 'enemy')
-    arena.start_game(**heroes)
+    if isinstance(heroes.get('player'), UserUnit) and isinstance(heroes.get(
+            'enemy'), EnemyUnit):
+        arena.start_game(**heroes)
+
+    else:
+        abort(400, 'Не удалось загрузить арену')
 
     return redirect(url_for('main_blueprint.fight_page', act_request='start'))

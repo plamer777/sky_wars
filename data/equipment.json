@@ -63,6 +63,38 @@
   "max_damage": 4.5,
   "min_damage": 2.9,
   "stamina_per_hit": 2.1
+  },
+  {
+  "id": 9,
+  "name": "Ножи-крючки 'Риддика'",
+  "log_name": "Ножами-крючками 'Риддика'",
+  "max_damage": 3.5,
+  "min_damage": 2.2,
+  "stamina_per_hit": 1.9
+  },
+  {
+  "id": 10,
+  "name": "Совковая лопата",
+  "log_name": "Совковой лопатой",
+  "max_damage": 3.1,
+  "min_damage": 1.9,
+  "stamina_per_hit": 2.2
+  },
+  {
+  "id": 11,
+  "name": "Копье",
+  "log_name": "Копьем",
+  "max_damage": 3.2,
+  "min_damage": 2.5,
+  "stamina_per_hit": 1.8
+  },
+  {
+  "id": 12,
+  "name": "Кистень",
+  "log_name": "Кистенью",
+  "max_damage": 3.8,
+  "min_damage": 2.2,
+  "stamina_per_hit": 2.3
   }
   ],
   "armors": [
@@ -113,6 +145,36 @@
     "name": "Мото 'черепаха'",
     "defence": 1.4,
     "stamina_per_turn": 1.2
+    },
+    {
+    "id": 8,
+    "name": "Кольчуга",
+    "defence": 1.9,
+    "stamina_per_turn": 2.5
+    },
+    {
+    "id": 9,
+    "name": "Стеганый доспех",
+    "defence": 1.5,
+    "stamina_per_turn": 1.7
+    },
+    {
+    "id": 10,
+    "name": "Чешуйчатый доспех",
+    "defence": 1.7,
+    "stamina_per_turn": 2.0
+    },
+        {
+    "id": 11,
+    "name": "Ламелляр",
+    "defence": 1.9,
+    "stamina_per_turn": 2.2
+    },
+        {
+    "id": 12,
+    "name": "Латы",
+    "defence": 2.5,
+    "stamina_per_turn": 3.5
     }
   ]
 }

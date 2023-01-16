@@ -126,7 +126,7 @@ class BaseUnit(Unit):
         return f"{self.name} попытался использовать {self.weapon.name}, " \
                f"но у него не хватило выносливости:("
 
-    def _round_values(self):
+    def _round_values(self) -> None:
         self.stamina = round(self.stamina, 2)
         self.health = round(self.health, 2)
 # -------------------------------------------------------------------------
@@ -139,7 +139,7 @@ class UserUnit(BaseUnit):
 
 class EnemyUnit(BaseUnit):
     """This class represents an opponent"""
-    def hit(self, target: Unit) -> str:
+    def hit(self, target: BaseUnit) -> str:  # type: ignore
         """This method allows unit to hit a player. Method was changed to
         use a skill randomly
 

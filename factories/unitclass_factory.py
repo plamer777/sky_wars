@@ -30,10 +30,12 @@ class UnitClassFactory:
         heroes = load_from_json(CLASSES_FILE)
         skills = load_from_json(SKILLS_FILE)
         phrases = load_from_json(LOGS_FILE)
-        shuffle(skills)
+        if type(skills) is list:
+            shuffle(skills)
+
         try:
             for hero in heroes:
-                hero['skill'] = skills.pop()
+                hero['skill'] = skills.pop()  # type: ignore
                 hero['positive_logs'] = phrases.get('positive_logs',
                                                     DEFAULT_POSITIVE)
                 hero['negative_logs'] = phrases.get('negative_logs',

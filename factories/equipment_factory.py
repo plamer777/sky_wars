@@ -48,7 +48,7 @@ class EquipmentFactory:
 
         return None
 
-    def get_armor(self, armor: str) -> Optional[Armor]:
+    def get_armor(self, armor: str) -> Armor | list:
         """This method serves to get an armor by its name
 
         :param armor: a name of the required armor
@@ -60,7 +60,7 @@ class EquipmentFactory:
 
             return found_armor[0] if found_armor else self.equipment.armors[0]
 
-        return None
+        return []
 
     def get_weapon_names(self) -> List[str]:
         """This method serves to get a list of all weapon names

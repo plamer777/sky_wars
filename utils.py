@@ -1,5 +1,4 @@
 """This file contains utility functions to load and prepare necessary data"""
-from typing import List
 import json
 # --------------------------------------------------------------------------
 

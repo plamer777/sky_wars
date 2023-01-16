@@ -61,5 +61,23 @@
     "name": "Программист",
     "stamina": 1.3,
     "avatar": "programmer.jpg"
+  },
+  {
+    "armor": 0.9,
+    "attack": 1.8,
+    "max_health": 35.0,
+    "max_stamina": 60.0,
+    "name": "Ассасин",
+    "stamina": 2.0,
+    "avatar": "assassin.png"
+  },
+  {
+    "armor": 1.2,
+    "attack": 1.8,
+    "max_health": 45.0,
+    "max_stamina": 25.0,
+    "name": "Варвар",
+    "stamina": 1.0,
+    "avatar": "varvar.png"
   }
 ]
