@@ -21,4 +21,4 @@ jobs:
             cp skywars.service /etc/systemd/system
             systemctl daemon-reload
             systemctl start skywars
-            systemctl enable skywars  
+            systemctl enable skywars
