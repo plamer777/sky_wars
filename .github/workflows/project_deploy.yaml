@@ -11,14 +11,10 @@ jobs:
           username: root
           password: ${{secrets.SKYWARS_SERVER_PASS}}
           script: |
-            cd /home/
-            mkdir skywars
-            cd skywars
-            git clone https://github.com/plamer777/coursework_5.git .
-            python3.10 -m venv venv
-            . venv/bin/activate
-            pip install -r requirements.txt
+            cd /home/skywars            
+            git pull https://github.com/plamer777/coursework_5.git            
             cp skywars.service /etc/systemd/system
+            systemctl stop skywars
             systemctl daemon-reload
             systemctl start skywars
             systemctl enable skywars

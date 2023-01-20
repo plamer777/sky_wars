@@ -3,8 +3,8 @@ Description=Skywars browser game
 After=network.target
 
 [Service]
-WorkingDirectory=/home/skywars/
-ExecStart=venv/bin/gunicorn -b 0.0.0.0:80 workers=2 threads=2 app:app
+WorkingDirectory=/home/skywars
+ExecStart=/home/skywars/venv/bin/gunicorn -b 0.0.0.0:80 --threads=4 app:app
 Restart=always
 
 [Install]
