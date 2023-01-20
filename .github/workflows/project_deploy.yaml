@@ -1,7 +1,7 @@
 name: skywars copy and deploy
 on: [push]
 jobs:
-  copy files to server:
+  copy_files_to_server:
     runs-on: ubuntu-latest
     steps:
       - name: clone git repository
