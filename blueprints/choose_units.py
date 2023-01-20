@@ -2,7 +2,8 @@
 routes"""
 from typing import Dict, Union
 from flask import Blueprint, render_template, request, redirect, url_for, \
-    abort, Response
+    abort
+from werkzeug.wrappers.response import Response
 from marshmallow import ValidationError
 from marshmallow_dataclass import class_schema
 from classes.unit import UserUnit, EnemyUnit
@@ -82,8 +83,8 @@ def enemy_chosen_page() -> Response:
     """
     enemy_request = request.form
     heroes['enemy'] = get_requested_unit(enemy_request, 'enemy')
-    if isinstance(heroes.get('player'), UserUnit) and isinstance(heroes.get(
-            'enemy'), EnemyUnit):
+    if isinstance(heroes['player'], UserUnit) and \
+            isinstance(heroes['enemy'], EnemyUnit):
         arena.start_game(**heroes)
 
     else:

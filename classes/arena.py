@@ -62,10 +62,10 @@ class Arena(BaseArena):
         """This method serves to recover stamina after the actions of both
         players"""
         if self._player and self._enemy:
-            self._player.add_stamina(self._player.unit_class.stamina *
-                                     self._recovery)
-            self._enemy.add_stamina(self._enemy.unit_class.stamina *
-                                    self._recovery)
+            self._player.add_stamina(
+                self._player.unit_class.stamina * self._recovery)
+            self._enemy.add_stamina(
+                self._enemy.unit_class.stamina * self._recovery)
 
     def check_health(self) -> bool:
         """This method serves to check health of both players

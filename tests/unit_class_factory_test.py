@@ -1,5 +1,6 @@
 """This unit contains TestUnitClassFactory class to test UnitClassFactory"""
 from classes.hero_classes import UnitClass
+from factories.unitclass_factory import UnitClassFactory
 from tests.utils import check_class_types, check_class_names
 # -------------------------------------------------------------------------
 
@@ -7,7 +8,7 @@ from tests.utils import check_class_types, check_class_names
 class TestUnitClassFactory:
     """The TestUnitClassFactory class provides all necessary methods to test
     original methods of UnitClassFactory"""
-    def test_get_class_names(self, class_factory) -> None:
+    def test_get_class_names(self, class_factory: UnitClassFactory) -> None:
         """This method tests the get_class_names method of the
         UnitClassFactory
 
@@ -18,7 +19,7 @@ class TestUnitClassFactory:
 
         check_class_names(unit_class_names)
 
-    def test_get_unit_class(self, class_factory) -> None:
+    def test_get_unit_class(self, class_factory: UnitClassFactory) -> None:
         """This method tests the get_hero_class method of the
         UnitClassFactory
 

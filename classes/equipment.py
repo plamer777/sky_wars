@@ -43,4 +43,3 @@ class EquipmentData:
     """This class includes all available weapon and armor"""
     weapons: List[Weapon]
     armors: List[Armor]
-

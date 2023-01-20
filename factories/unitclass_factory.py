@@ -35,7 +35,7 @@ class UnitClassFactory:
 
         try:
             for hero in heroes:
-                hero['skill'] = skills.pop()  # type: ignore
+                hero['skill'] = skills.pop()
                 hero['positive_logs'] = phrases.get('positive_logs',
                                                     DEFAULT_POSITIVE)
                 hero['negative_logs'] = phrases.get('negative_logs',
@@ -56,8 +56,8 @@ class UnitClassFactory:
         :return: UnitClass instance or None if there wasn't available
         class"""
         if self.classes:
-            found_class = list(filter(lambda x: x.name.lower() ==
-                               class_name.lower(), self.classes))
+            found_class = list(filter(
+                lambda x: x.name.lower() == class_name.lower(), self.classes))
 
             return found_class[0] if found_class else self.classes[0]
 

@@ -46,6 +46,7 @@ class BaseSkill(Skill):
         """
         if user.stamina >= self.stamina_required:
             target.health -= self.damage
+            user.stamina -= self.stamina_required
             target.health = round(target.health, 2)
 
             return self.skill_effect(user)

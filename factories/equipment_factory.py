@@ -12,6 +12,7 @@ from constants import EQUIPMENT_FILE
 class EquipmentFactory:
     """This class contains factory methods to load and get necessary game's
     equipment"""
+
     def __init__(self) -> None:
         self.equipment: Optional[EquipmentData] = self._load_all()
 
@@ -40,8 +41,9 @@ class EquipmentFactory:
         :return: Weapon instance or None if there wasn't available
         weapon"""
         if self.equipment:
-            found_weapon = list(filter(lambda x: x.name.lower() ==
-                                       weapon.lower(), self.equipment.weapons))
+            found_weapon = list(filter(
+                lambda x: x.name.lower() == weapon.lower(),
+                self.equipment.weapons))
 
             return found_weapon[0] if found_weapon else \
                 self.equipment.weapons[0]
@@ -55,8 +57,9 @@ class EquipmentFactory:
         :return: Armor instance or None if there wasn't available
         armor"""
         if self.equipment:
-            found_armor = list(filter(lambda x: x.name.lower() ==
-                                      armor.lower(), self.equipment.armors))
+            found_armor = list(filter(
+                lambda x: x.name.lower() == armor.lower(),
+                self.equipment.armors))
 
             return found_armor[0] if found_armor else self.equipment.armors[0]
 
