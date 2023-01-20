@@ -15,7 +15,7 @@ jobs:
             mkdir skywars
             cd skywars
             git clone https://github.com/plamer777/coursework_5.git .
-            python3 -m venv venv
+            python3.10 -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
             cp skywars.service /etc/systemd/system
