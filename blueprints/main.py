@@ -34,4 +34,4 @@ def fight_page(act_request: str) -> str:
     else:
         result = {'result': '', 'battle_result': ''}
 
-    return render_template('fight.html', heroes=heroes, result=result)
+    return render_template('fight (copy).html', heroes=heroes, result=result)

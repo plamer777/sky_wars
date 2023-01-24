@@ -3,9 +3,9 @@ equipment"""
 from typing import List, Optional
 from marshmallow_dataclass import class_schema
 from marshmallow import ValidationError
+from flask import current_app
 from classes.equipment import EquipmentData, Weapon, Armor
-from utils import load_from_json
-from constants import EQUIPMENT_FILE
+from services.equipment_service import EquipmentService
 # ------------------------------------------------------------------------
 
 
@@ -25,7 +25,8 @@ class EquipmentFactory:
         loading data
         """
         EquipmentSchema = class_schema(EquipmentData)
-        equipments = load_from_json(EQUIPMENT_FILE)
+        with current_app.app_context():
+            equipments = EquipmentService().get_all()
 
         try:
             result = EquipmentSchema().load(equipments)

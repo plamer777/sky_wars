@@ -24,7 +24,7 @@
     "max_stamina": 20.0,
     "name": "Наемник",
     "stamina": 1.4,
-    "avatar": "mercenary.jpg"
+    "avatar": "mercenary.png"
   },
   {
     "armor": 1.2,
@@ -42,7 +42,7 @@
     "max_stamina": 35.0,
     "name": "Диванный боец",
     "stamina": 1.8,
-    "avatar": "sofa_warrior.jpg"
+    "avatar": "sofa_warrior.png"
   },
   {
     "armor": 0.4,

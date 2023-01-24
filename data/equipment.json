@@ -141,37 +141,37 @@
     "stamina_per_turn": 1.2
     },
     {
-    "id": 7,
+    "id": 8,
     "name": "Мото 'черепаха'",
     "defence": 1.4,
     "stamina_per_turn": 1.2
     },
     {
-    "id": 8,
+    "id": 9,
     "name": "Кольчуга",
     "defence": 1.9,
     "stamina_per_turn": 2.5
     },
     {
-    "id": 9,
+    "id": 10,
     "name": "Стеганый доспех",
     "defence": 1.5,
     "stamina_per_turn": 1.7
     },
     {
-    "id": 10,
+    "id": 11,
     "name": "Чешуйчатый доспех",
     "defence": 1.7,
     "stamina_per_turn": 2.0
     },
         {
-    "id": 11,
+    "id": 12,
     "name": "Ламелляр",
     "defence": 1.9,
     "stamina_per_turn": 2.2
     },
         {
-    "id": 12,
+    "id": 13,
     "name": "Латы",
     "defence": 2.5,
     "stamina_per_turn": 3.5

@@ -4,10 +4,12 @@ from typing import List, Optional
 from random import shuffle
 from marshmallow_dataclass import class_schema
 from marshmallow import ValidationError
+from flask import current_app
 from classes.hero_classes import UnitClass
-from utils import load_from_json
-from constants import CLASSES_FILE, SKILLS_FILE, LOGS_FILE, DEFAULT_NEGATIVE, \
-    DEFAULT_POSITIVE
+from services.unit_class_service import UnitClassService
+from services.skills_service import SkillsService
+from services.phrases_service import PhrasesService
+from constants import  DEFAULT_NEGATIVE, DEFAULT_POSITIVE
 # ------------------------------------------------------------------------
 
 
@@ -21,15 +23,18 @@ class UnitClassFactory:
     @staticmethod
     def _load_all() -> Optional[List[UnitClass]]:
         """This closed method serves to load all available hero classes from
-        the json file
+        the database using ServiceClasses
 
         :return: UnitClass instance or None if there was an error during
         loading data
         """
         UnitClassSchema = class_schema(UnitClass)
-        heroes = load_from_json(CLASSES_FILE)
-        skills = load_from_json(SKILLS_FILE)
-        phrases = load_from_json(LOGS_FILE)
+
+        with current_app.app_context():
+            heroes = UnitClassService().get_all()
+            skills = SkillsService().get_all()
+            phrases = PhrasesService().get_all()
+
         if type(skills) is list:
             shuffle(skills)
 
