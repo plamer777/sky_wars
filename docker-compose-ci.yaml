@@ -16,7 +16,7 @@ services:
       postgres:
         condition: service_healthy
     command:
-      - python create_db.py
+      - python3.10 create_db.py
 
   postgres:
     image: postgres:latest
