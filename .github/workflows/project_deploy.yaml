@@ -24,7 +24,6 @@ jobs:
       - name: push image
         run: docker push plamer88/skywars:$GITHUB_REF_NAME-$GITHUB_RUN_ID
 
-
   deploy_application:
     runs-on: ubuntu-latest
     needs: build_image
@@ -39,6 +38,8 @@ jobs:
         run: |
           mkdir temp
           cp skywars.service temp/skywars.service
+          cp create_db.py temp/create_db.py
+          cat config.py | envsubst > temp/config.py
           cat docker-compose-ci.yaml | envsubst > temp/docker-compose.yaml
 
       - name: copy files to server
@@ -47,7 +48,7 @@ jobs:
           host: ${{secrets.APP_HOST}}
           username: ${{secrets.SKYWARS_USERNAME}}
           password: ${{secrets.SKYWARS_SERVER_PASS}}
-          source: "temp/docker-compose.yaml,temp/skywars.service"
+          source: "temp/docker-compose.yaml,temp/skywars.service,temp/config.py,temp/create_db.py"
           target: "/home/skywars"
           strip_components: 1
 
