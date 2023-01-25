@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 WorkingDirectory=/home/skywars
-ExecStart=/home/skywars/venv/bin/gunicorn -b 0.0.0.0:80 --threads=4 app:app
+ExecStart=docker compose up -d
 Restart=always
 
 [Install]

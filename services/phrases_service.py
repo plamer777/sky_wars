@@ -25,7 +25,7 @@ class PhrasesService:
         positive_logs = [PhraseSchema.from_orm(
             phrase).dict()['phrase'] for phrase in positive]
         negative_logs = [PhraseSchema.from_orm(
-                     phrase).dict()['phrase'] for phrase in negative]
+            phrase).dict()['phrase'] for phrase in negative]
 
         all_phrases = {'positive_logs': positive_logs,
                        'negative_logs': negative_logs

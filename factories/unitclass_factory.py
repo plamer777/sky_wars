@@ -9,7 +9,7 @@ from classes.hero_classes import UnitClass
 from services.unit_class_service import UnitClassService
 from services.skills_service import SkillsService
 from services.phrases_service import PhrasesService
-from constants import  DEFAULT_NEGATIVE, DEFAULT_POSITIVE
+from constants import DEFAULT_NEGATIVE, DEFAULT_POSITIVE
 # ------------------------------------------------------------------------
 
 

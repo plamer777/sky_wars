@@ -33,4 +33,3 @@ class EquipmentDao:
         weapons = self.db.query(WeaponModel).all()
 
         return weapons
-

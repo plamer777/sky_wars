@@ -1,10 +1,15 @@
+"""This unit contains models and schemas for tables with unit classes using in
+the game"""
+from flask_sqlalchemy.model import Model
 from db.db_setup import db
 from pydantic import BaseModel
 # -------------------------------------------------------------------------
 
 
-class UnitClassModel(db.Model):
-
+class UnitClassModel(Model):
+    """
+    Model class for the unit_classes table in the database
+    """
     __tablename__ = 'unit_classes'
     id = db.Column(db.Integer, primary_key=True)
     armor = db.Column(db.Float)
@@ -17,6 +22,9 @@ class UnitClassModel(db.Model):
 
 
 class UnitClassSchema(BaseModel):
+    """
+    Schema class for the unit_classes table in the database
+    """
     armor: float
     attack: float
     max_health: float

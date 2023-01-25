@@ -29,4 +29,4 @@ class EquipmentService:
                         weapon_models]
         }
 
-        return all_equipment   
+        return all_equipment
