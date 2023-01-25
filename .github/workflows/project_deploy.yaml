@@ -38,6 +38,7 @@ jobs:
       - name: prepare files
         run: |
           mkdir temp
+          cp skywars.service temp/skywars.service
           cat docker-compose-ci.yaml | envsubst > temp/docker-compose.yaml
 
       - name: copy files to server
