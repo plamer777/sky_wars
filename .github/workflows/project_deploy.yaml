@@ -57,8 +57,7 @@ jobs:
           username: ${{secrets.SKYWARS_USERNAME}}
           password: ${{secrets.SKYWARS_SERVER_PASS}}
           script: |
-            cd /home/skywars            
-            git pull https://github.com/plamer777/coursework_5.git            
+            cd /home/skywars                      
             cp skywars.service /etc/systemd/system
             systemctl stop skywars
             systemctl daemon-reload
