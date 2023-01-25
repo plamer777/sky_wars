@@ -36,7 +36,7 @@ jobs:
       - name: clone git repository
         uses: actions/checkout@v2
       - name: prepare files
-        run:
+        run: |
           mkdir temp
           cat docker-compose-ci.yaml | envsubst > temp/docker-compose.yaml
 
