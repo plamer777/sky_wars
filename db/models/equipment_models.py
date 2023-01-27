@@ -1,12 +1,11 @@
 """This unit contains models and schemas for weapon and armor tables with data
 using in the game"""
-from flask_sqlalchemy.model import Model
 from db.db_setup import db
 from pydantic import BaseModel
 # ---------------------------------------------------------------------------
 
 
-class WeaponModel(Model):
+class WeaponModel(db.Model):
     """
     Model class for the weapon table in the database
     """
@@ -19,7 +18,7 @@ class WeaponModel(Model):
     stamina_per_hit = db.Column(db.Float)
 
 
-class ArmorModel(Model):
+class ArmorModel(db.Model):
     """
     Model class for the armor table in the database
     """

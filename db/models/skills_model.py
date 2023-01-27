@@ -6,7 +6,7 @@ from pydantic import BaseModel
 # ---------------------------------------------------------------------------
 
 
-class SkillModel(Model):
+class SkillModel(db.Model):
     """
     Model class for the skills table in the database
     """

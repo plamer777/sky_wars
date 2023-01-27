@@ -6,7 +6,7 @@ from pydantic import BaseModel
 # -------------------------------------------------------------------------
 
 
-class UnitClassModel(Model):
+class UnitClassModel(db.Model):
     """
     Model class for the unit_classes table in the database
     """

@@ -6,7 +6,7 @@ from pydantic import BaseModel
 # ---------------------------------------------------------------------------
 
 
-class PositivePhraseModel(Model):
+class PositivePhraseModel(db.Model):
     """
     Model class for the positive_phrases table in the database
     """
@@ -15,7 +15,7 @@ class PositivePhraseModel(Model):
     phrase = db.Column(db.String(150))
 
 
-class NegativePhraseModel(Model):
+class NegativePhraseModel(db.Model):
     """
     Model class for the negative_phrases table in the database
     """
