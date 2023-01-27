@@ -1,5 +1,5 @@
 from utils import load_from_json
-from app import app
+from init_app import app
 from db.db_setup import db
 from db.models.phrase_models import PositivePhraseModel, NegativePhraseModel
 from db.models.equipment_models import ArmorModel, WeaponModel
