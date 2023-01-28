@@ -7,17 +7,17 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-      create_db:
-        condition: service_completed_successfully
+#      create_db:
+#        condition: service_completed_successfully
 
-  create_db:
-    image: plamer88/skywars:$GITHUB_REF_NAME-$GITHUB_RUN_ID
-    depends_on:
-      postgres:
-        condition: service_healthy
-    volumes:
-      - ./create_db.py:/skywars/create_db.py
-    command: python3 create_db.py
+#  create_db:
+#    image: plamer88/skywars:$GITHUB_REF_NAME-$GITHUB_RUN_ID
+#    depends_on:
+#      postgres:
+#        condition: service_healthy
+#    volumes:
+#      - ./create_db.py:/skywars/create_db.py
+#    command: python3 create_db.py
 
   postgres:
     image: postgres:latest
