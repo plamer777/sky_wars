@@ -1,6 +1,5 @@
 """This unit contains models and schemas for tables with phrases using in the
 game process"""
-from flask_sqlalchemy.model import Model
 from db.db_setup import db
 from pydantic import BaseModel
 # ---------------------------------------------------------------------------

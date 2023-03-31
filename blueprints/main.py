@@ -1,8 +1,10 @@
 """This unit contains a views to serve '/' and '/fight/ routes"""
-from flask import Blueprint, render_template
+from typing import Dict, Any
+from flask import Blueprint, render_template, request
 from marshmallow_dataclass import class_schema
 from classes.user_requests import UserRequest
-from container import user_action, heroes
+from container import users_arenas, user_heroes
+from utils import clean_objects
 # ------------------------------------------------------------------------
 main_blueprint = Blueprint('main_blueprint', __name__)
 RequestSchema = class_schema(UserRequest)
@@ -15,6 +17,7 @@ def main_page() -> str:
 
     :return a string containing html content
     """
+    clean_objects(users_arenas, user_heroes)
     return render_template('index.html')
 
 
@@ -26,6 +29,14 @@ def fight_page(act_request: str) -> str:
 
     :return a string containing html content
     """
+    user_host = request.host
+
+    user_action: Dict[str, Any] = {
+        'hit': users_arenas[user_host].hit_rival,
+        'use-skill': users_arenas[user_host].use_skill,
+        'pass-turn': users_arenas[user_host].next_step,
+        'end-fight': users_arenas[user_host].finish_game
+    }
     current_action = user_action.get(act_request)
 
     if current_action:
@@ -34,4 +45,5 @@ def fight_page(act_request: str) -> str:
     else:
         result = {'result': '', 'battle_result': ''}
 
-    return render_template('fight (copy).html', heroes=heroes, result=result)
+    return render_template('fight.html', heroes=user_heroes[user_host],
+                           result=result)

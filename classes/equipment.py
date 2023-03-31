@@ -9,6 +9,7 @@ from marshmallow import EXCLUDE
 
 @dataclass
 class Weapon:
+    """This class represents a weapon in the game"""
     name: str
     log_name: str
     min_damage: float

@@ -8,10 +8,12 @@ from marshmallow import ValidationError
 from marshmallow_dataclass import class_schema
 from classes.unit import UserUnit, EnemyUnit
 from classes.user_requests import UserRequest
-from container import hero_factory, heroes, arena
+from container import user_heroes, users_arenas
+from classes.arena import Arena
+from factories.hero_factory import HeroFactory
 # ------------------------------------------------------------------------
 units_blueprint = Blueprint('units_blueprint', __name__)
-options = hero_factory.get_full_info()
+options = {}
 # ------------------------------------------------------------------------
 
 
@@ -28,9 +30,9 @@ def get_requested_unit(unit_request: Dict[str, str],
     try:
         unit_chosen = RequestSchema().load(unit_request)
         if unit_type == 'enemy':
-            prepared_unit = hero_factory.create_enemy(unit_chosen)
+            prepared_unit = HeroFactory().create_enemy(unit_chosen)
         elif unit_type == 'hero':
-            prepared_unit = hero_factory.create_hero(unit_chosen)
+            prepared_unit = HeroFactory().create_hero(unit_chosen)
         else:
             raise ValidationError('Unknown hero type')
 
@@ -47,8 +49,10 @@ def choose_hero() -> str:
 
     :return: a string containing html content
     """
-    options.update(hero_factory.get_full_info())
-    arena.clean()
+    user_host = request.host
+    options.update(HeroFactory().get_full_info())
+    users_arenas.setdefault(user_host, Arena()).clean()
+
     options['header'] = 'Героя'
     options['route'] = '/choose-hero/'
 
@@ -63,7 +67,10 @@ def hero_chosen_page() -> str:
     :return: a string containing html content
     """
     hero_request = request.form
-    heroes['player'] = get_requested_unit(hero_request, 'hero')  # type: ignore
+    user_host = request.host
+    user_heroes.setdefault(user_host, {}).setdefault('player')
+    user_heroes[user_host]['player'] = get_requested_unit(
+        hero_request, 'hero')  # type: ignore
 
     options['header'] = 'Противника'
     options['route'] = '/choose-enemy/'
@@ -82,10 +89,15 @@ def enemy_chosen_page() -> Response:
     :return: a string containing html content
     """
     enemy_request = request.form
-    heroes['enemy'] = get_requested_unit(enemy_request, 'enemy')
-    if isinstance(heroes['player'], UserUnit) and \
-            isinstance(heroes['enemy'], EnemyUnit):
-        arena.start_game(**heroes)
+    user_host = request.host
+    user_heroes.setdefault(user_host, {}).setdefault('enemy', {})
+    user_heroes[user_host]['enemy'] = get_requested_unit(
+        enemy_request, 'enemy')  # type: ignore
+
+    if isinstance(user_heroes[user_host]['player'], UserUnit) and \
+            isinstance(user_heroes[user_host]['enemy'], EnemyUnit):
+
+        users_arenas[user_host].start_game(**user_heroes[user_host])
 
     else:
         abort(400, 'Не удалось загрузить арену')

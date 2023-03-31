@@ -1,8 +1,9 @@
 """This unit contains EquipmentService provided a business logic to get
 necessary data armors and weapons tables of the database"""
-from typing import Dict, List
+from typing import Dict, List, Any
+
 from dao.equipment_dao import EquipmentDao
-from db.models.equipment_models import ArmorSchema, WeaponSchema
+from db.models import ArmorSchema, WeaponSchema
 # ------------------------------------------------------------------------
 
 
@@ -30,3 +31,30 @@ class EquipmentService:
         }
 
         return all_equipment
+
+    def add_weapon(self, weapon_data: dict[str, Any]) -> \
+            str:
+        """This method serves to add a new weapon to the game process
+        :param weapon_data: A dictionary representing the weapon data
+        :return: A string representing the result of the operation
+        """
+        try:
+            validated_data = WeaponSchema(**weapon_data)
+            self.equipment_dao.add_weapon(validated_data)
+            return 'Added successfully'
+
+        except Exception as e:
+            return f'Failed to add weapon, error: {e}'
+
+    def add_armor(self, armor_data: dict[str, Any]) -> str:
+        """This method serves to add a new armor to the game process
+        :param armor_data: A dictionary representing the armor data
+        :return: A string representing the result of the operation
+        """
+        try:
+            validated_data = ArmorSchema(**armor_data)
+            self.equipment_dao.add_armor(validated_data)
+            return 'Added successfully'
+
+        except Exception as e:
+            return f'Failed to add armor, error: {e}'

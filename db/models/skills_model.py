@@ -1,6 +1,5 @@
 """This unit contains models and schemas for table with available skills for
 the game process"""
-from flask_sqlalchemy.model import Model
 from db.db_setup import db
 from pydantic import BaseModel
 # ---------------------------------------------------------------------------

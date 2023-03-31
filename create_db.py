@@ -1,15 +1,16 @@
+"""This file contains functions to create a new database and add data to it"""
 from utils import load_from_json
 from init_app import app
 from db.db_setup import db
-from db.models.phrase_models import PositivePhraseModel, NegativePhraseModel
-from db.models.equipment_models import ArmorModel, WeaponModel
-from db.models.skills_model import SkillModel
-from db.models.unit_class_model import UnitClassModel
+from db.models import PositivePhraseModel, NegativePhraseModel, ArmorModel, \
+    WeaponModel, SkillModel, UnitClassModel
 from constants import EQUIPMENT_FILE, LOGS_FILE, CLASSES_FILE, SKILLS_FILE
 # -------------------------------------------------------------------------
 
 
-def create_database():
+def create_database() -> None:
+    """This function serves to create and fill up the database"""
+    db.drop_all()
     db.create_all()
     equipment = load_from_json(EQUIPMENT_FILE)
     classes = load_from_json(CLASSES_FILE)
@@ -35,8 +36,11 @@ def create_database():
     db.session.close()
 
 
-def fill_up_table(model: db.Model, data: list[dict]):
-
+def fill_up_table(model: db.Model, data: list[dict]) -> None:
+    """This function fills up the certain table by provided model and data
+    :param model: One of the SQLAlchemy models
+    :param data: A list of dictionaries containing data to create models
+    """
     for item in data:
         created = model(**item)
 

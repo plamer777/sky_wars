@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <style>
+      body {
+          background-image: url("../static/backgrounds/background_7.jpg");
+          background-size: cover;
+      }
+      .form-group {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      label {
+        font-weight: bold;
+        margin-right: 10px;
+        color: #3ef522;
+      }
+
+      .form-position {
+          margin-right: auto;
+          margin-left: auto;
+          width: 70%;
+          text-align: center;
+      }
+
+      button {
+        width: 150px;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+      h1 {
+        text-align: center;
+          font-family: "Open Sans", sans-serif;
+        color: aqua;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Выбор опций для добавления</h1>
+    <form class="form-position" action="/add-weapon/" method="get">
+      <div class="form-group">
+        <button type="submit" name="action" value="button_1">Добавить оружие</button>
+      </div>
+    </form>
+    <form class="form-position" action="/add-armor/" method="get">
+      <div class="form-group">
+        <button type="submit" name="action" value="button_2">Добавить броню</button>
+      </div>
+    </form>
+    <form class="form-position" action="/add-class/" method="get">
+      <div class="form-group">
+        <button type="submit" name="action" value="button_3">Добавить класс</button>
+      </div>
+    </form>
+    <form class="form-position" action="/add-skill/" method="get">
+      <div class="form-group">
+        <button type="submit" name="action" value="button_4">Добавить навык</button>
+      </div>
+    </form>
+    <form class="form-position" action="/add-logs/" method="get">
+      <div class="form-group">
+        <button type="submit" name="action" value="button_5">Добавить логи</button>
+      </div>
+    </form>
+  <div style="text-align: center; margin-left: 5%; background-color: rgba(255,255,255,0.68)">
+  <p><a href="/">Вернуться на главную</a></p>
+  </div>
+  </body>
+</html>

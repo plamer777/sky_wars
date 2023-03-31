@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <style>
+      body {
+          background-image: url("../static/backgrounds/background_8.jpg");
+          background-size: cover;
+      }
+      .form-control {
+        width: 80%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+      }
+
+      .form-control:focus {
+        border: 2px solid #555;
+      }
+
+      .form-group {
+        text-align: right;
+        margin-top: 20px;
+      }
+
+      label {
+        font-weight: bold;
+        margin-right: 10px;
+        color: #3ef522;
+      }
+
+      .form-position {
+          margin-right: auto;
+      }
+
+      button {
+        width: 20%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 50%;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+       h1 {
+        text-align: center;
+          font-family: "Open Sans", sans-serif;
+        color: aqua;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Добавить логи</h1>
+    <form class="form-position" action="/add-logs/" method="post">
+      <div class="form-group">
+        <label for="positive">Positive Log:</label>
+        <input type="text" class="form-control" id="positive" name="positive" required>
+      </div>
+      <div class="form-group">
+        <label for="negative">Negative Log:</label>
+        <input type="text" class="form-control" id="negative" name="negative" required>
+      </div>
+      <div class="form-group">
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  <div class="form-group" style="text-align: center; margin-left: 20%; color: #14b402">
+        <p>{{ result }}</p>
+      </div>
+  <div style="text-align: center; margin-left: 5%; background-color: rgba(255,255,255,0.68)">
+  <p><a href="/options/">Вернуться в меню</a></p>
+  </div>
+  </body>
+</html>

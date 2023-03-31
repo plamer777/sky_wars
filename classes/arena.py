@@ -1,4 +1,5 @@
 """This unit contains classes describing a game arena"""
+from datetime import datetime
 from typing import Optional, Dict, Any
 from classes.unit import UserUnit, EnemyUnit
 # --------------------------------------------------------------------------
@@ -14,7 +15,7 @@ class BaseArena:
         return cls._instance
 
 
-class Arena(BaseArena):
+class Arena:
     """This class represents an arena for players with necessary logic"""
     def __init__(self) -> None:
         """Initialization of the Arena class
@@ -24,6 +25,11 @@ class Arena(BaseArena):
         self._enemy: Optional[EnemyUnit] = None
         self._game_started: bool = False
         self._battle_result: str = ''
+        self._created_at = datetime.now()
+
+    @property
+    def created_at(self) -> datetime:
+        return self._created_at
 
     def start_game(self, player: UserUnit, enemy: EnemyUnit) -> None:
         """This method prepares the arena for the given players

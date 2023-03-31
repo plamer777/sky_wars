@@ -2,7 +2,7 @@
 skills using in the game"""
 from typing import List
 from db.db_setup import db
-from db.models.skills_model import SkillModel
+from db.models import SkillModel, SkillSchema
 # ------------------------------------------------------------------------
 
 
@@ -24,3 +24,15 @@ class SkillsDao:
         all_skills = self.db.query(SkillModel).all()
 
         return all_skills
+
+    def add_new(self, skill: SkillSchema) -> SkillModel:
+        """This method adds a new skill to the database
+        :param skill: an instance of SkillSchema class
+        :return: an instance of SkillModel class
+        """
+        new_skill = SkillModel(**skill.dict())
+
+        self.db.add(new_skill)
+        self.db.commit()
+
+        return new_skill

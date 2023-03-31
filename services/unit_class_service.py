@@ -2,7 +2,7 @@
 necessary data from the database"""
 from typing import List, Dict, Any
 from dao.unit_class_dao import UnitClassDao
-from db.models.unit_class_model import UnitClassSchema
+from db.models import UnitClassSchema
 # ------------------------------------------------------------------------
 
 
@@ -29,3 +29,16 @@ class UnitClassService:
             unit_model).dict() for unit_model in unit_class_models]
 
         return all_unit_classes
+
+    def add_new(self, unit_class: dict) -> str:
+        """This method serves to add a new unit class to the game process
+        :param unit_class: A dictionary representing the unit class data
+        :return: A string representing the result of the operation
+        """
+        try:
+            new_unit_class = UnitClassSchema(**unit_class)
+            self.unit_class_dao.add_new(new_unit_class)
+            return 'Added successfully'
+
+        except Exception as e:
+            return f'Failed to add unit class, error: {e}'

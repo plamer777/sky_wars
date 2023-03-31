@@ -1,6 +1,5 @@
 """This unit contains models and schemas for tables with unit classes using in
 the game"""
-from flask_sqlalchemy.model import Model
 from db.db_setup import db
 from pydantic import BaseModel
 # -------------------------------------------------------------------------
@@ -18,7 +17,7 @@ class UnitClassModel(db.Model):
     max_stamina = db.Column(db.Float)
     name = db.Column(db.String(20))
     stamina = db.Column(db.Float)
-    avatar = db.Column(db.String(30))
+    avatar = db.Column(db.String(50))
 
 
 class UnitClassSchema(BaseModel):

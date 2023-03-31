@@ -1,0 +1,8 @@
+{
+  "email": "$ADMIN_LOGIN",
+  "password": "$ADMIN_PASS",
+  "repeat_password": "$ADMIN_PASS",
+  "first_name": "Aleksey",
+  "last_name": "Mavrin",
+  "role": "admin"
+}

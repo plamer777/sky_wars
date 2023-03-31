@@ -2,7 +2,7 @@
 available skills from database and prepare them for using in the game"""
 from typing import List, Dict, Any
 from dao.skills_dao import SkillsDao
-from db.models.skills_model import SkillSchema
+from db.models import SkillSchema
 # ------------------------------------------------------------------------
 
 
@@ -25,3 +25,16 @@ class SkillsService:
             skill_model).dict() for skill_model in skill_models]
 
         return all_skills
+
+    def add_new(self, skill_data: dict) -> str:
+        """This method serves to add a new skill to the game process
+        :param skill_data: A dictionary representing the skill data
+        :return: A string representing the result of the operation
+        """
+        try:
+            new_skill = SkillSchema(**skill_data)
+            self.skills_dao.add_new(new_skill)
+            return 'Added successfully'
+
+        except Exception as e:
+            return f'Failed to add new skill, error: {e}'
