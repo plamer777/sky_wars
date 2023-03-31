@@ -11,7 +11,6 @@ from classes.user_requests import UserRequest
 from container import user_heroes, users_arenas
 from classes.arena import Arena
 from factories.hero_factory import HeroFactory
-from utils import save_to_file
 
 # ------------------------------------------------------------------------
 units_blueprint = Blueprint('units_blueprint', __name__)
@@ -54,7 +53,7 @@ def choose_hero() -> str:
     user_host = request.remote_addr
     options.update(HeroFactory().get_full_info())
     users_arenas.setdefault(user_host, Arena()).clean()
-    save_to_file('log.txt', user_host)
+
     options['header'] = 'Героя'
     options['route'] = '/choose-hero/'
 

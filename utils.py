@@ -37,9 +37,3 @@ def clean_objects(user_arenas: dict[str, Arena], heroes: dict[str, dict]) -> \
         if timeout.seconds // 60 > 30:
             user_arenas.pop(host)
             heroes.pop(host)
-
-
-def save_to_file(filename: str, text: str) -> None:
-
-    with open(filename, 'a', encoding='utf-8') as fout:
-        fout.write(text)
