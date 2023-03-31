@@ -49,9 +49,7 @@ jobs:
           host: ${{secrets.APP_HOST}}
           username: ${{secrets.SKYWARS_USERNAME}}
           password: ${{secrets.SKYWARS_SERVER_PASS}}
-          source:
-            - "temp/docker-compose.yaml,temp/skywars.service"
-            - "temp/create_db.py,temp/admin.json,temp/add_admin.py"
+          source: "temp/docker-compose.yaml,temp/skywars.service,temp/create_db.py,temp/admin.json,temp/add_admin.py"
           target: "/home/skywars"
           strip_components: 1
 
