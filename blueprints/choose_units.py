@@ -49,10 +49,9 @@ def choose_hero() -> str:
 
     :return: a string containing html content
     """
-    user_host = request.host
+    user_host = request.remote_addr
     options.update(HeroFactory().get_full_info())
     users_arenas.setdefault(user_host, Arena()).clean()
-
     options['header'] = 'Героя'
     options['route'] = '/choose-hero/'
 
@@ -67,7 +66,7 @@ def hero_chosen_page() -> str:
     :return: a string containing html content
     """
     hero_request = request.form
-    user_host = request.host
+    user_host = request.remote_addr
     user_heroes.setdefault(user_host, {}).setdefault('player')
     user_heroes[user_host]['player'] = get_requested_unit(
         hero_request, 'hero')  # type: ignore
@@ -89,7 +88,7 @@ def enemy_chosen_page() -> Response:
     :return: a string containing html content
     """
     enemy_request = request.form
-    user_host = request.host
+    user_host = request.remote_addr
     user_heroes.setdefault(user_host, {}).setdefault('enemy', {})
     user_heroes[user_host]['enemy'] = get_requested_unit(
         enemy_request, 'enemy')  # type: ignore

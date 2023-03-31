@@ -10,12 +10,12 @@ services:
       make_migrations:
         condition: service_completed_successfully
 
-  make_migrations:
-    image: plamer88/skywars:$GITHUB_REF_NAME-$GITHUB_RUN_ID
-    depends_on:
-      postgres:
-        condition: service_healthy
-    command: python3 create_db.py
+#  make_migrations:
+#    image: plamer88/skywars:$GITHUB_REF_NAME-$GITHUB_RUN_ID
+#    depends_on:
+#      postgres:
+#        condition: service_healthy
+#    command: python3 create_db.py
 
   postgres:
     image: postgres:latest

@@ -29,7 +29,7 @@ def fight_page(act_request: str) -> str:
 
     :return a string containing html content
     """
-    user_host = request.host
+    user_host = request.remote_addr
 
     user_action: Dict[str, Any] = {
         'hit': users_arenas[user_host].hit_rival,
