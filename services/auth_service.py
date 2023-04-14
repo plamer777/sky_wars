@@ -37,7 +37,7 @@ class AuthService:
             if self._user_dao.get_user_by_email(new_user.email):
                 return 'The user already exists'
             new_user.password = self._hash_manager.encode_password(
-                new_user.password).decode(encoding='utf-8')
+                new_user.password)
 
         except ValidationError as e:
             print(f'Invalid user data, error: {e}')
