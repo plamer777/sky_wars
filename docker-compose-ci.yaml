@@ -21,6 +21,7 @@ services:
     volumes:
       - ./add_admin.py:/skywars/add_admin.py
       - ./admin.json:/skywars/data/admin.json
+      - ./config.py:/skywars/config.py
 
   postgres:
     image: postgres:latest
