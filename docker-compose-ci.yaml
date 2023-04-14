@@ -17,7 +17,7 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-    command: "flask db stamp head && flask db migrate && flask db upgrade && python3 add_admin.py"
+    command: "python3 create_db.py && python3 add_admin.py"
     volumes:
       - ./add_admin.py:/skywars/add_admin.py
       - ./admin.json:/skywars/data/admin.json
