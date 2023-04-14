@@ -15,7 +15,9 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-    command: python3 create_db.py
+    command: python3 add_admin.py
+    volumes:
+      - ./add_admin.py:/skywars/add_admin.py
 
   postgres:
     image: postgres:latest
