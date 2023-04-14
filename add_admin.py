@@ -4,6 +4,6 @@ from utils import load_from_json
 # -------------------------------------------------------------------------
 
 
-admin_data = load_from_json('admin.json')
+admin_data = load_from_json('data/admin.json')
 with app.app_context():
     AuthService().register_user(admin_data)
