@@ -1,7 +1,8 @@
 class FlaskConfig:
     """The configuration class for Flask application"""
-    SQLALCHEMY_DATABASE_URI = \
-        'postgresql+psycopg2://$DB_USER:$DB_PASS@$DB_HOST/$DB_NAME'
+    SQLALCHEMY_DATABASE_URI = (
+        'postgresql+psycopg2://$POSTGRES_USER:$POSTGRES_PASSWORD@$DB_HOST' 
+        '/$POSTGRES_DB')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     JWT_SECRET = '$JWT_SECRET'
