@@ -9,6 +9,8 @@ services:
         condition: service_healthy
       make_migrations:
         condition: service_completed_successfully
+    volumes:
+      - ./config.py:/skywars/config.py
 
   make_migrations:
     image: plamer88/skywars:$GITHUB_REF_NAME-$GITHUB_RUN_ID
@@ -18,6 +20,7 @@ services:
     command: python3 add_admin.py
     volumes:
       - ./add_admin.py:/skywars/add_admin.py
+      - ./admin.json:/skywars/data/admin.json
 
   postgres:
     image: postgres:latest
