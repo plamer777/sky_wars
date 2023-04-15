@@ -31,11 +31,10 @@ jobs:
       - name: prepare files
         run: |
           mkdir temp          
-          cp create_db.py temp/create_db.py
-          cp add_admin.py temp/add_admin.py  
+          cp create_db.py temp/create_db.py          
           cat docker-compose-ci.yaml | envsubst > temp/docker-compose.yaml
           cat data/admin.json | envsubst > temp/admin.json
-          cat config.py | envsubst > temp/config.py          
+          cat config-ci.py | envsubst > temp/config.py          
 
       - name: copy files to server
         uses: appleboy/scp-action@master
@@ -43,7 +42,7 @@ jobs:
           host: ${{secrets.APP_HOST}}
           username: ${{secrets.SKYWARS_USERNAME}}
           password: ${{secrets.SKYWARS_SERVER_PASS}}
-          source: "temp/docker-compose.yaml,temp/create_db.py,temp/admin.json,temp/add_admin.py,temp/config.py"
+          source: "temp/docker-compose.yaml,temp/create_db.py,temp/admin.json,temp/config.py"
           target: "/home/skywars"
           strip_components: 1
 

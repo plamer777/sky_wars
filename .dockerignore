@@ -1,0 +1,13 @@
+.flake8
+.gitignore
+.dockerignore
+config-ci.py
+docker-compose-ci.yaml
+docker-compose.yaml
+Dockerfile
+logs.txt
+mypy.ini
+README.md
+skywars.service
+.github
+admin_test.json

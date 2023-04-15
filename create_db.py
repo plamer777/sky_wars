@@ -1,10 +1,14 @@
 """This file contains functions to create a new database and add data to it"""
+from services.auth_service import AuthService
 from utils import load_from_json
 from init_app import app
 from db.db_setup import db
 from db.models import PositivePhraseModel, NegativePhraseModel, ArmorModel, \
     WeaponModel, SkillModel, UnitClassModel
-from constants import EQUIPMENT_FILE, LOGS_FILE, CLASSES_FILE, SKILLS_FILE
+from constants import EQUIPMENT_FILE, LOGS_FILE, CLASSES_FILE, SKILLS_FILE, \
+    ADMIN_FILE
+
+
 # -------------------------------------------------------------------------
 
 
@@ -16,6 +20,8 @@ def create_database() -> None:
     classes = load_from_json(CLASSES_FILE)
     phrases = load_from_json(LOGS_FILE)
     skills = load_from_json(SKILLS_FILE)
+    admin_data = load_from_json(ADMIN_FILE)
+
     armors = equipment['armors']
     weapons = equipment['weapons']
 
@@ -31,6 +37,7 @@ def create_database() -> None:
     fill_up_table(PositivePhraseModel, positive_phrases)
     fill_up_table(NegativePhraseModel, negative_phrases)
     fill_up_table(SkillModel, skills)
+    AuthService().register_user(admin_data)
 
     db.session.commit()
     db.session.close()

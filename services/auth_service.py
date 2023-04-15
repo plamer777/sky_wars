@@ -12,7 +12,7 @@ from dao.auth_dao import UserDao
 from managers.hash_manager import HashManager
 # ----------------------------------------------------------------------
 
-logging.basicConfig(filename='data/logs.txt')
+logging.basicConfig(filename='data/logs.txt', level=logging.INFO)
 
 
 class AuthService:
@@ -40,7 +40,7 @@ class AuthService:
             if self._user_dao.get_user_by_email(new_user.email):
                 return 'The user already exists'
             new_user.password = self._hash_manager.encode_password(
-                new_user.password)
+                new_user.password).decode('utf-8')
 
         except ValidationError as e:
             print(f'Invalid user data, error: {e}')

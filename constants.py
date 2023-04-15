@@ -6,6 +6,7 @@ EQUIPMENT_FILE = os.path.join('data', 'equipment.json')
 CLASSES_FILE = os.path.join('data', 'hero_classes.json')
 SKILLS_FILE = os.path.join('data', 'skills.json')
 LOGS_FILE = os.path.join('data', 'unit_phrases.json')
+ADMIN_FILE = os.path.join('data', 'admin.json')
 AVATAR_DIR = os.path.join('static', 'avatars')
 
 
