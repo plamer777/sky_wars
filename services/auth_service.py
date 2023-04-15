@@ -117,7 +117,7 @@ class AuthService:
 
         return False
 
-    def _is_pass_valid(self, password: str, valid_password: bytes) -> bool:
+    def _is_pass_valid(self, password: str, valid_password: str) -> bool:
         """This method checks if provided password is valid
 
         :param password: the password to check
@@ -126,4 +126,4 @@ class AuthService:
         """
         hashed_pass = self._hash_manager.encode_password(password)
 
-        return compare_digest(hashed_pass, valid_password)
+        return compare_digest(hashed_pass, valid_password.encode('utf-8'))
