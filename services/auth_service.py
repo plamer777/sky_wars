@@ -1,5 +1,6 @@
 """There is an AuthService class in the file serving to register new users
 and validate credentials of the existing ones"""
+import logging
 import os
 import functools
 from typing import Optional, Union
@@ -10,6 +11,8 @@ from db.models import UserSchema, UserAuthSchema
 from dao.auth_dao import UserDao
 from managers.hash_manager import HashManager
 # ----------------------------------------------------------------------
+
+logging.basicConfig(filename='data/logs.txt')
 
 
 class AuthService:
@@ -65,7 +68,8 @@ class AuthService:
             return f'Login failed, error: {e}'
 
         found_user = self._user_dao.get_user_by_email(validated_data.email)
-
+        logging.info(f'Найден пользователь - {found_user}')
+        logging.info(f'Почта: {found_user.email}, {validated_data.email}')
         if found_user and self._is_pass_valid(validated_data.password,
                                               found_user.password):
             return self._hash_manager.create_token(
@@ -125,5 +129,7 @@ class AuthService:
         :return: True if the password is valid or False otherwise
         """
         hashed_pass = self._hash_manager.encode_password(password)
+        logging.info(
+            f'Пароли: {hashed_pass}, {valid_password}')
 
         return compare_digest(hashed_pass, valid_password.encode('utf-8'))

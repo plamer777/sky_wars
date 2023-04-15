@@ -55,5 +55,6 @@ jobs:
           password: ${{secrets.SKYWARS_SERVER_PASS}}
           script: |
             cd /home/skywars
-            docker-compose up -d --build
+            > logs.txt
+            docker compose up -d --build
             docker system prune -a -f        

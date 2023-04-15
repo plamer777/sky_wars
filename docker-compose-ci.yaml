@@ -12,6 +12,7 @@ services:
     volumes:
       - ./config.py:/skywars/config.py
       - ./admin.json:/skywars/data/admin.json
+      - ./logs.txt:/skywars/data/logs.txt
 
   make_migrations:
     image: plamer88/skywars:$GITHUB_REF_NAME-$GITHUB_RUN_ID
